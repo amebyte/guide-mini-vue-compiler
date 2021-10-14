@@ -22,7 +22,7 @@ interface IStaff {
   type Keys = keyof UserMap; // 'dev' | 'manager'
   type Tuples<T> = T extends Keys ? [T, InstanceType<UserMap[T]>] : never;
   type SingleKeys<K> = [K] extends (K extends Keys ? [K] : never) ? K : never;
-  type ClassType<A extends Keys> = Extract<Tuples<Keys>, [A, any]>[1];
+  type ClassType<K extends Keys> = Extract<Tuples<Keys>, [K, any]>[1];
   
   class UserFactory {
     static getUser<K extends Keys>(k: SingleKeys<K>): ClassType<K> {
